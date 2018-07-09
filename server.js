@@ -21,23 +21,28 @@ if (process.env.NODE_ENV === "production") {
 const articleController = require('./controllers/articleController');
 const router = new express.Router();
 // Get saved articles from db
-router.get('/api/articles', )
+router.get('/api/articles', articleController.find);
 // Save articles to db
-router.post('api/articles')
+router.post('/api/articles', articleController.insert);
 // Delete articles to db
-router.delete('api/articles')
+router.delete('/api/articles', articleController.remove);
 
+// Catch all, send other requests to react app 
+router.get('*', function(req,res){
+    res.sendFile(path.join(__dirname, "./client/build/index.html"))
+})
 
+app.use(router)
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
 
 app.get('/', function(req,res){
     res.send('Hello world')
-})
+});
 
 // Start the API server 
 app.listen(PORT, function(){
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-})
+});
 
 
