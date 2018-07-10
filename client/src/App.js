@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { BrowserRouter as Router, Route } from "react-router-dom";
-import Jumbotron from './components/Jumbotron'
+import Article from './components/Article'
 
 class App extends Component {
 
@@ -9,7 +9,10 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Jumbotron />
-          {/* <Articles /> */}
+          
+          <Search />
+          <Results />
+          <SavedArticles />
         </div>
       </div>
     );
