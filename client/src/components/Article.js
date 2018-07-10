@@ -89,12 +89,31 @@ class Article extends Component{
         const newArticleToSave = {title: searchArticle.headline.main, date: searchArticle.pub_date, url: searchArticle.web_url};
         api.saveArticles(newArticleToSave)
         .then(this.renderSavedArticles)
-    }
+    };
 
 
     // Delete articles from db after delete button clicked
     handleDelete = (id) => {
-        
+        api.deleteArticles(id)
+        .then(this.renderSavedArticles());
+    }; 
+
+    render() {
+        return (
+            // <div>
+            //     {/*  */}
+            // </div>
+            <Search
+                handleTopicChange={this.handleTopicChange}
+                handleStartYearChange={this.handleStartYearChange}
+                handleEndYearChange={this.handleEndYearChange}
+                handleFormSubmit={this.handleFormSubmit}
+                renderArticles={this.renderArticles}
+            />
+            
+
+
+        )
     }
 
 
